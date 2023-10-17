@@ -9,10 +9,10 @@
         android:background="@drawable/background">
         <Button
             android:id="@+id/BtnChoi"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Chơi"
-            android:textSize="30dp"
+            android:textSize="40dp"
             android:textColor="#000000"
             android:textAllCaps="true"
             android:background="@drawable/button_color"
@@ -20,10 +20,10 @@
             android:layout_marginTop="200dp"/>
         <Button
             android:id="@+id/BtnDiemcao"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Điểm cao nhất"
-            android:textSize="30dp"
+            android:textSize="40dp"
             android:textColor="#000000"
             android:textAllCaps="true"
             android:background="@drawable/button_color"
@@ -32,10 +32,10 @@
             android:layout_marginTop="20dp"/>
         <Button
             android:id="@+id/BtnThoat"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Thoát"
-            android:textSize="30dp"
+            android:textSize="40dp"
             android:textColor="#000000"
             android:textAllCaps="true"
             android:background="@drawable/button_color"

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/image_background"
+        android:background="@drawable/background">
+
+    <View
+        android:id="@+id/cc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#777777"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/TxtCauHoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Câu 1"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"/>
+    <View
+        android:id="@+id/Viewhinhco"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/vietnam"
+        android:layout_below="@+id/TxtCauHoi"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:id="@+id/BtnTraloiA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_color"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="A:VIỆT NAM"
+        android:textSize="30dp"
+        android:textAlignment="textStart"
+        android:layout_below="@+id/Viewhinhco"
+        />
+        <Button
+            android:id="@+id/BtnTraloiB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_color"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="B:MẼO"
+            android:textSize="30dp"
+            android:textAlignment="textStart"
+            android:layout_below="@+id/BtnTraloiA"
+            />
+        <Button
+            android:id="@+id/BtnTraloiC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_color"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="C:CAMPUCHIA"
+            android:textSize="30dp"
+            android:textAlignment="textStart"
+            android:layout_below="@+id/BtnTraloiB"
+            />
+        <Button
+            android:id="@+id/BtnTraloid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_color"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="C:CAMPUCHIA"
+            android:textSize="30dp"
+            android:textAlignment="textStart"
+            android:layout_below="@+id/BtnTraloiC"
+            />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,13 @@ public class choithoi extends Activity {
         Thoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(choithoi.this, MainActivity.class);
+                finish();
+            }
+        });
+        Choi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(choithoi.this, mucdo.class);
                 startActivity(intent);
             }
         });

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".choithoi"/>
+        <activity android:name=".mucdo"/>
     </application>
 
 </manifest>
