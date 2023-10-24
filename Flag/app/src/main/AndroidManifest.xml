@@ -22,8 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".choithoi"/>
-        <activity android:name=".mucdo"/>
+        <activity android:name=".activity_entry"/>
+        <activity android:name=".activity_diff"/>
+        <activity android:name=".activity_highscore"/>
+        <activity android:name=".activity_result"/>
     </application>
 
 </manifest>

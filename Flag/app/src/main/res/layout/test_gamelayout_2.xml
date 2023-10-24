@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009999"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="#CCFFFF"
+            android:text="QUESTION 2"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="#CCFFFF"
+            android:text="Vietnam"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="200dp"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="90dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Australia"
+            android:hint="Australia"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            android:src="@drawable/australia"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="350dp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Vietnam"
+            android:hint="Vietnam"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            android:src="@drawable/vietnam"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="350dp"
+            android:layout_below="@+id/imageButton"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Thailand"
+            android:hint="Thailand"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            android:src="@drawable/thailand"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="05dp"
+            tools:layout_editor_absoluteY="475dp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/imageButton"/>
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Japan"
+            android:hint="Japan"
+            android:scaleType="fitXY"
+            android:backgroundTint="#99CCCC"
+            android:src="@drawable/japan"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="475dp"
+            android:layout_below="@+id/imageButton3"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/imageButton"/>
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

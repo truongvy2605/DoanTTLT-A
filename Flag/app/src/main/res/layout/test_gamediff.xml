@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_diff"
+    android:background="#009999">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ImageDiffTheme"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/transparentwm"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="215dp"
+            android:layout_marginTop="250dp"/>
+
+        <Button
+            android:id="@+id/ButtonDiffEasy"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:backgroundTint="#CCFFFF"
+            android:text="Easy"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="215dp"
+            android:layout_marginTop="250dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/ButtonDiffHard"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:backgroundTint="#CCFFFF"
+            android:text="Hard"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="328dp"
+            android:layout_below="@+id/ButtonDiffEasy"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:id="@+id/ButtonDiffExpert"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:backgroundTint="#CCFFFF"
+            android:text="Expert"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="440dp"
+            android:layout_below="@+id/ButtonDiffHard"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
