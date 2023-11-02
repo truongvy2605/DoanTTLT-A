@@ -20,17 +20,22 @@ public class activity_result extends Activity {
         Score = (TextView) findViewById(R.id.TextResultScore);
         Intent callerIntent=getIntent();
         Bundle packageFromCaller= callerIntent.getBundleExtra("MyPackage");
-        Score.setText(packageFromCaller.getInt("KQ")+"/"+ packageFromCaller.getInt("Socau"));
+        assert packageFromCaller != null;
+        Score.setText(packageFromCaller.getInt("Progress")+"/"+ packageFromCaller.getInt("QuestionID")*10);
         TryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent
+                        (activity_result.this,  activity_diff.class);
+                startActivity(intent);
             }
         });
         TapOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent
+                        (activity_result.this,  MainActivity.class);
+                startActivity(intent);
             }
         });
     }

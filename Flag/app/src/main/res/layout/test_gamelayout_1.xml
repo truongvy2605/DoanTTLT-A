@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textQuesID"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="#CCFFFF"
-            android:text="QUESTION 1"
+            android:text=""
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
@@ -26,27 +26,28 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="60dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"/>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:src="@drawable/vietnam"
+            android:src="@null"
+            android:scaleType="fitXY"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="126dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/textQuesID"
             android:layout_centerHorizontal="true"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/AnswerA"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
-            android:text="MẼO"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -56,14 +57,14 @@
             tools:layout_editor_absoluteY="425dp"
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/AnswerB"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
-            android:text="CAMPUCHIA"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -71,16 +72,16 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="510dp"
-            android:layout_below="@+id/button2"
+            android:layout_below="@+id/AnswerA"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/AnswerC"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
-            android:text="LÀO"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -88,16 +89,16 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="589dp"
-            android:layout_below="@+id/button3"
+            android:layout_below="@+id/AnswerB"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/AnswerD"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
-            android:text="VIETNAM"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -105,9 +106,24 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="347dp"
-            android:layout_below="@+id/button4"
+            android:layout_below="@+id/AnswerC"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/TextLayout1Result"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            android:layout_below="@+id/AnswerD"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_marginLeft="110dp"
+            tools:layout_editor_absoluteY="200dp" />
     </RelativeLayout>
 
 

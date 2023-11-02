@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Questionare>
+    <Item>
+        <ID>1</ID>
+        <Question>drawable/kenya</Question>
+        <AnswerA>Kenya</AnswerA>
+        <AnswerB>Nigeria</AnswerB>
+        <AnswerC>Nam Phi</AnswerC>
+        <AnswerD>Tanzania</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>2</ID>
+        <Question>drawable/ghana</Question>
+        <AnswerA>Ghana</AnswerA>
+        <AnswerB>Ethiopia</AnswerB>
+        <AnswerC>Nam Phi</AnswerC>
+        <AnswerD>Tanzania</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>3</ID>
+        <Question>drawable/senegal</Question>
+        <AnswerA>Mali</AnswerA>
+        <AnswerB>Senegal</AnswerB>
+        <AnswerC>Burkina Faso</AnswerC>
+        <AnswerD>Chad</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>4</ID>
+        <Question>drawable/tunisia</Question>
+        <AnswerA>Morocco</AnswerA>
+        <AnswerB>Algeria</AnswerB>
+        <AnswerC>Tunisia</AnswerC>
+        <AnswerD>Libya</AnswerD>
+        <Answer>C</Answer>
+    </Item>
+    <Item>
+        <ID>5</ID>
+        <Question>drawable/sierraleone</Question>
+        <AnswerA>Togo</AnswerA>
+        <AnswerB>Mali</AnswerB>
+        <AnswerC>Niger</AnswerC>
+        <AnswerD>Sierra Leone</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+    <Item>
+        <ID>6</ID>
+        <Question>drawable/gabon</Question>
+        <AnswerA>Cameroon</AnswerA>
+        <AnswerB>Gabon</AnswerB>
+        <AnswerC>Congo</AnswerC>
+        <AnswerD>African Republic</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>7</ID>
+        <Question>drawable/benin</Question>
+        <AnswerA>Egypt</AnswerA>
+        <AnswerB>Ivory Coast</AnswerB>
+        <AnswerC>Benin</AnswerC>
+        <AnswerD>Liberia</AnswerD>
+        <Answer>C</Answer>
+    </Item>
+    <Item>
+        <ID>8</ID>
+        <Question>drawable/mozambique</Question>
+        <AnswerA>Mozambique</AnswerA>
+        <AnswerB>South Africa</AnswerB>
+        <AnswerC>Zimbabwe</AnswerC>
+        <AnswerD>Botswana</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>9</ID>
+        <Question>drawable/ivorycoast</Question>
+        <AnswerA>Ghana</AnswerA>
+        <AnswerB>Senegal</AnswerB>
+        <AnswerC>Mail</AnswerC>
+        <AnswerD>Ivory Coast</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+    <Item>
+        <ID>10</ID>
+        <Question>drawable/cameroon</Question>
+        <AnswerA>Congo</AnswerA>
+        <AnswerB>Mail</AnswerB>
+        <AnswerC>Cameroon</AnswerC>
+        <AnswerD>Botswana</AnswerD>
+        <Answer>C</Answer>
+    </Item>
+    <Item>
+        <ID>11</ID>
+        <Question>drawable/newzealand</Question>
+        <AnswerA>New Zealand</AnswerA>
+        <AnswerB>Fiji</AnswerB>
+        <AnswerC>Samoa</AnswerC>
+        <AnswerD>Vanuatu</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>12</ID>
+        <Question>drawable/papuanewguinea</Question>
+        <AnswerA>Papua New Guinea</AnswerA>
+        <AnswerB>Tuvalu</AnswerB>
+        <AnswerC>Tonga</AnswerC>
+        <AnswerD>Nauru</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>13</ID>
+        <Question>drawable/australia</Question>
+        <AnswerA>Australia</AnswerA>
+        <AnswerB>Solomon Islands</AnswerB>
+        <AnswerC>Palau</AnswerC>
+        <AnswerD>Kiribati</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>14</ID>
+        <Question>drawable/palau</Question>
+        <AnswerA>Fiji</AnswerA>
+        <AnswerB>Marshall Islands</AnswerB>
+        <AnswerC>Vanuatu</AnswerC>
+        <AnswerD>Palau</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+    <Item>
+        <ID>15</ID>
+        <Question>drawable/kiribati</Question>
+        <AnswerA>Palau</AnswerA>
+        <AnswerB>Kiribati</AnswerB>
+        <AnswerC>Marshall Islands</AnswerC>
+        <AnswerD>Tuvalu</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>16</ID>
+        <Question>drawable/sanmarino</Question>
+        <AnswerA>San Marino</AnswerA>
+        <AnswerB>Andorra</AnswerB>
+        <AnswerC>Monaco</AnswerC>
+        <AnswerD>Liechtenstein</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>17</ID>
+        <Question>drawable/cyprus</Question>
+        <AnswerA>Malta</AnswerA>
+        <AnswerB>Cyprus</AnswerB>
+        <AnswerC>Luxembourg</AnswerC>
+        <AnswerD>Iceland</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>18</ID>
+        <Question>drawable/estonia</Question>
+        <AnswerA>Estonia</AnswerA>
+        <AnswerB>Latvia</AnswerB>
+        <AnswerC>Lithuania</AnswerC>
+        <AnswerD>Belarus</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>19</ID>
+        <Question>drawable/luxembourg</Question>
+        <AnswerA>Luxembourg</AnswerA>
+        <AnswerB>San Marino</AnswerB>
+        <AnswerC>Monaco</AnswerC>
+        <AnswerD>Andorra</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>20</ID>
+        <Question>drawable/montenegro</Question>
+        <AnswerA>Iceland</AnswerA>
+        <AnswerB>Malta</AnswerB>
+        <AnswerC>Cyprus</AnswerC>
+        <AnswerD>Montenegro</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+</Questionare>
