@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/ImageDiffTheme"
             android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             android:layout_below="@+id/ButtonDiffHard"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"/>
-    </RelativeLayout>
 
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

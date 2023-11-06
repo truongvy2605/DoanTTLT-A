@@ -12,24 +12,31 @@ public class activity_entry extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_gameentry);
-        PlayGame = (Button)findViewById(R.id.ButtonEntryPG);
+
+        /* CHỨC NĂNG PLAY GAME */
+        PlayGame = findViewById(R.id.ButtonEntryPG);
         PlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /* Khởi tạo Intent, bắt đầu activity tiếp theo */
                 Intent intent = new Intent(activity_entry.this, activity_diff.class);
                 startActivity(intent);
             }
         });
-        HighScore = (Button)findViewById(R.id.ButtonEntryHS);
+        /* CHỨC NĂNG HIGH SCORE */
+        HighScore = findViewById(R.id.ButtonEntryHS);
         HighScore.setOnClickListener(new View.OnClickListener() {
+            /* Khởi tạo Intent, bắt đầu activity tiếp theo */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_entry.this, activity_highscore.class);
                 startActivity(intent);
             }
         });
-        Exit = (Button) findViewById(R.id.ButtonEntryExit);
+        /* CHỨC NĂNG EXIT */
+        Exit = findViewById(R.id.ButtonEntryExit);
         Exit.setOnClickListener(new View.OnClickListener() {
+            /* Finish() để quay lại activity trước */
             @Override
             public void onClick(View v) {
                 finish();

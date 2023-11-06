@@ -1,5 +1,6 @@
 package com.com.flag;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 public class activity_result extends Activity {
     Button TryAgain, TapOut;
     TextView Score;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class activity_result extends Activity {
         Intent callerIntent=getIntent();
         Bundle packageFromCaller= callerIntent.getBundleExtra("MyPackage");
         assert packageFromCaller != null;
-        Score.setText(packageFromCaller.getInt("Progress")+"/"+ packageFromCaller.getInt("QuestionID")*10);
+        Score.setText("" + packageFromCaller.getInt("Progress"));
         TryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

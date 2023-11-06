@@ -29,7 +29,7 @@
     </Item>
     <Item>
         <ID>4</ID>
-        <Question>Myanmar</Question>
+        <Question>MYANMAR</Question>
         <AnswerA>drawable/indonesia</AnswerA>
         <AnswerB>drawable/malaysia</AnswerB>
         <AnswerC>drawable/thailand</AnswerC>
@@ -38,11 +38,56 @@
     </Item>
     <Item>
         <ID>5</ID>
-        <Question>Timor</Question>
+        <Question>TIMOR</Question>
         <AnswerA>drawable/vietnam</AnswerA>
         <AnswerB>drawable/timor</AnswerB>
         <AnswerC>drawable/cambodia</AnswerC>
         <AnswerD>drawable/laos</AnswerD>
         <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>6</ID>
+        <Question>THAILAND</Question>
+        <AnswerA>drawable/cambodia</AnswerA>
+        <AnswerB>drawable/vietnam</AnswerB>
+        <AnswerC>drawable/thailand</AnswerC>
+        <AnswerD>drawable/laos</AnswerD>
+        <Answer>C</Answer>
+    </Item>
+    <Item>
+        <ID>7</ID>
+        <Question>PHILIPPINES</Question>
+        <AnswerA>drawable/indonesia</AnswerA>
+        <AnswerB>drawable/myanmar</AnswerB>
+        <AnswerC>drawable/singapore</AnswerC>
+        <AnswerD>drawable/philippines</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+    <Item>
+        <ID>8</ID>
+        <Question>LAOS</Question>
+        <AnswerA>drawable/brunei</AnswerA>
+        <AnswerB>drawable/malaysia</AnswerB>
+        <AnswerC>drawable/timor</AnswerC>
+        <AnswerD>drawable/laos</AnswerD>
+        <Answer>D</Answer>
+    </Item>
+    <Item>
+        <ID>9</ID>
+        <Question>MALAYSIA</Question>
+        <AnswerA>drawable/indonesia</AnswerA>
+        <AnswerB>drawable/malaysia</AnswerB>
+        <AnswerC>drawable/thailand</AnswerC>
+        <AnswerD>drawable/myanmar</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>10</ID>
+        <Question>CAMBODIA</Question>
+        <AnswerA>drawable/vietnam</AnswerA>
+        <AnswerB>drawable/timor</AnswerB>
+        <AnswerC>drawable/cambodia</AnswerC>
+        <AnswerD>drawable/laos</AnswerD>
+        <Answer>C</Answer>
     </Item>
 </Questionare>
