@@ -87,6 +87,7 @@
             tools:layout_editor_absoluteY="600dp"
             android:layout_below="@+id/EditMainName"
             android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

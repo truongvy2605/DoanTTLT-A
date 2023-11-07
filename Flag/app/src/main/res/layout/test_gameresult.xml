@@ -31,13 +31,12 @@
 
         <TextView
             android:id="@+id/TextResultScore"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="280dp"
-            android:text="80"
+            android:text=""
             android:textAlignment="center"
-            android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="200dp"
+            android:textSize="150dp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="80dp"

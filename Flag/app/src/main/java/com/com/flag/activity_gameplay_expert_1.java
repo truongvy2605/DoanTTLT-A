@@ -37,17 +37,17 @@ public class activity_gameplay_expert_1 extends Activity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_gamelayout_1);
 
-        Ques = (TextView) findViewById(R.id.textQuesID);
+        Ques = (TextView) findViewById(R.id.TextLayout1QuesID);
         Result = (TextView) findViewById(R.id.TextLayout1Result);
-        A = (Button) findViewById(R.id.AnswerA);
-        B = (Button) findViewById(R.id.AnswerB);
-        C = (Button) findViewById(R.id.AnswerC);
-        D = (Button) findViewById(R.id.AnswerD);
+        A = (Button) findViewById(R.id.ButtonLayout1AnsA);
+        B = (Button) findViewById(R.id.ButtonLayout1AnsB);
+        C = (Button) findViewById(R.id.ButtonLayout1AnsC);
+        D = (Button) findViewById(R.id.ButtonLayout1AnsD);
         LoadHighScore();
         ReadData();
         Display(pos);
-        int[] Arr = {R.id.AnswerA, R.id.AnswerB,
-                R.id.AnswerC, R.id.AnswerD};
+        int[] Arr = {R.id.ButtonLayout1AnsA, R.id.ButtonLayout1AnsB,
+                R.id.ButtonLayout1AnsC, R.id.ButtonLayout1AnsD};
         for (int id : Arr) {
             View v = (View) findViewById(id);
             v.setOnClickListener(this);
@@ -56,16 +56,16 @@ public class activity_gameplay_expert_1 extends Activity implements View.OnClick
     @Override
     public void onClick(View v) {
         int idCheck = v.getId();
-        if (idCheck == R.id.AnswerA) {
+        if (idCheck == R.id.ButtonLayout1AnsA) {
             if (L.get(pos).Answer.compareTo("A") == 0)
                 pro = pro + 10;
-        } else if (idCheck == R.id.AnswerB) {
+        } else if (idCheck == R.id.ButtonLayout1AnsB) {
             if (L.get(pos).Answer.compareTo("B") == 0)
                 pro = pro + 10;
-        } else if (idCheck == R.id.AnswerC) {
+        } else if (idCheck == R.id.ButtonLayout1AnsC) {
             if (L.get(pos).Answer.compareTo("C") == 0)
                 pro = pro + 10;
-        } else if (idCheck == R.id.AnswerD) {
+        } else if (idCheck == R.id.ButtonLayout1AnsD) {
             if (L.get(pos).Answer.compareTo("D") == 0)
                 pro = pro + 10;
         }
@@ -93,8 +93,8 @@ public class activity_gameplay_expert_1 extends Activity implements View.OnClick
     }
 
     private void Display(int i) {
-        ((TextView) findViewById(R.id.textQuesID)).setText("QUESTION " + L.get(i).ID);
-        ((ImageView) findViewById(R.id.imageView)).setImageResource(this.getResources().getIdentifier(L.get(i).Q, null, this.getPackageName()));
+        ((TextView) findViewById(R.id.TextLayout1QuesID)).setText("QUESTION " + L.get(i).ID);
+        ((ImageView) findViewById(R.id.ImgLayout1Question)).setImageResource(this.getResources().getIdentifier(L.get(i).Q, null, this.getPackageName()));
         A.setText(L.get(i).AnswerA);
         B.setText(L.get(i).AnswerB);
         C.setText(L.get(i).AnswerC);
