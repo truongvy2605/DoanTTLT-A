@@ -16,7 +16,7 @@ public class activity_result extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_gameresult);
+        setContentView(R.layout.activity_result);
         TryAgain = (Button)findViewById(R.id.ButtonResultTA);
         TapOut = (Button)findViewById(R.id.ButtonResultTO);
         Score = (TextView) findViewById(R.id.TextResultScore);

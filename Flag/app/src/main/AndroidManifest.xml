@@ -26,9 +26,7 @@
         <activity android:name=".activity_diff"/>
         <activity android:name=".activity_highscore"/>
         <activity android:name=".activity_result"/>
-        <activity android:name=".activity_gameplay_2"/>
-        <activity android:name=".activity_gameplay_expert_1"/>
-        <activity android:name=".activity_gameplay_hard_1"/>
+        <activity android:name=".activity_gameplay"/>
     </application>
 
 </manifest>

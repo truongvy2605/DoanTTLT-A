@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009999"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/TextLayout2QuesID"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="#CCFFFF"
+            android:text=""
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:id="@+id/TextLayout2Question"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="#CCFFFF"
+            android:text=""
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="200dp"
+            android:layout_below="@+id/TextLayout2QuesID"
+            android:layout_marginTop="90dp"/>
+
+        <ImageButton
+            android:id="@+id/IButtonLayout2AnsA"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="AnswerA"
+            android:hint="AnswerA"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="350dp"
+            android:layout_below="@+id/TextLayout2Question"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"/>
+
+        <ImageButton
+            android:id="@+id/IButtonLayout2AnsB"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="AnswerB"
+            android:hint="AnswerB"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="350dp"
+            android:layout_below="@+id/IButtonLayout2AnsA"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"/>
+
+        <ImageButton
+            android:id="@+id/IButtonLayout2AnsC"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="AnswerC"
+            android:hint="AnswerC"
+            android:backgroundTint="#99CCCC"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="05dp"
+            tools:layout_editor_absoluteY="475dp"
+            android:layout_below="@+id/TextLayout2Question"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/IButtonLayout2AnsA"/>
+
+        <ImageButton
+            android:id="@+id/IButtonLayout2AnsD"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="AnswerD"
+            android:hint="AnswerD"
+            android:scaleType="fitXY"
+            android:backgroundTint="#99CCCC"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="475dp"
+            android:layout_below="@+id/IButtonLayout2AnsC"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/IButtonLayout2AnsB"/>
+
+        <TextView
+            android:id="@+id/TextLayout2Result"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
+            android:layout_below="@+id/IButtonLayout2AnsD"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/transparent"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_marginLeft="110dp"
+            tools:layout_editor_absoluteY="200dp" />
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

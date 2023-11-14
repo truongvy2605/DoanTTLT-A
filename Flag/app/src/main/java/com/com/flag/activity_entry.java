@@ -11,7 +11,7 @@ public class activity_entry extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_gameentry);
+        setContentView(R.layout.activity_entry);
 
         /* CHỨC NĂNG PLAY GAME */
         PlayGame = findViewById(R.id.ButtonEntryPG);
@@ -20,6 +20,7 @@ public class activity_entry extends Activity {
             public void onClick(View v) {
                 /* Khởi tạo Intent, bắt đầu activity tiếp theo */
                 Intent intent = new Intent(activity_entry.this, activity_diff.class);
+                intent.putExtra("style", "minitest");
                 startActivity(intent);
             }
         });

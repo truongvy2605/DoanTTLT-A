@@ -135,49 +135,4 @@
         <AnswerD>England</AnswerD>
         <Answer>A</Answer>
     </Item>
-    <Item>
-        <ID>16</ID>
-        <Question>drawable/brazil</Question>
-        <AnswerA>Argentina</AnswerA>
-        <AnswerB>Brazil</AnswerB>
-        <AnswerC>Peru</AnswerC>
-        <AnswerD>Thổ Nhĩ Kì</AnswerD>
-        <Answer>B</Answer>
-    </Item>
-    <Item>
-        <ID>17</ID>
-        <Question>drawable/australia</Question>
-        <AnswerA>Việt Nam</AnswerA>
-        <AnswerB>Australia</AnswerB>
-        <AnswerC>Chile</AnswerC>
-        <AnswerD>Nhật Bản</AnswerD>
-        <Answer>B</Answer>
-    </Item>
-    <Item>
-        <ID>18</ID>
-        <Question>drawable/chile</Question>
-        <AnswerA>Chile</AnswerA>
-        <AnswerB>Vietnam</AnswerB>
-        <AnswerC>Thailand</AnswerC>
-        <AnswerD>Lào</AnswerD>
-        <Answer>A</Answer>
-    </Item>
-    <Item>
-        <ID>19</ID>
-        <Question>drawable/argentina</Question>
-        <AnswerA>Argentina</AnswerA>
-        <AnswerB>Thailand</AnswerB>
-        <AnswerC>Indonesia</AnswerC>
-        <AnswerD>Lào</AnswerD>
-        <Answer>A</Answer>
-    </Item>
-    <Item>
-        <ID>20</ID>
-        <Question>drawable/peru</Question>
-        <AnswerA>Thailand</AnswerA>
-        <AnswerB>Campuchia</AnswerB>
-        <AnswerC>Peru</AnswerC>
-        <AnswerD>Malaysia</AnswerD>
-        <Answer>C</Answer>
-    </Item>
 </Questionare>

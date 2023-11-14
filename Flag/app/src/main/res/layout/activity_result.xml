@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009999"
+    tools:context=".activity_result">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/TextResultTitle"
+            android:layout_width="340dp"
+            android:layout_height="600dp"
+            android:background="#99CCCC"
+            android:text="YOUR SCORE"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="65dp"
+            android:layout_marginTop="65dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/TextResultScore"
+            android:layout_width="wrap_content"
+            android:layout_height="280dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="150dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="130dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp" />
+
+        <Button
+            android:id="@+id/ButtonResultTA"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#CCFFFF"
+            android:text="TRY AGAIN"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="500dp"
+            android:layout_marginTop="100dp"
+            android:layout_below="@+id/TextResultScore"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/ButtonResultTO"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#CCFFFF"
+            android:text="TAP OUT"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="580dp"
+            android:layout_below="@+id/ButtonResultTA"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

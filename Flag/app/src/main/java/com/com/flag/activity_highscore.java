@@ -18,7 +18,7 @@ public class activity_highscore extends Activity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        setContentView(R.layout.test_gamehighscore);
+        setContentView(R.layout.activity_highscore);
         Txt1 = (TextView)findViewById(R.id.TextHSScore);
         LoadHighScore();
         Txt1.setText(""+ HighScore);

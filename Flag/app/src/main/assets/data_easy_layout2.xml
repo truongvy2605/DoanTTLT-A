@@ -6,7 +6,7 @@
         <AnswerA>drawable/cambodia</AnswerA>
         <AnswerB>drawable/vietnam</AnswerB>
         <AnswerC>drawable/thailand</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>B</Answer>
     </Item>
     <Item>
@@ -24,7 +24,7 @@
         <AnswerA>drawable/brunei</AnswerA>
         <AnswerB>drawable/malaysia</AnswerB>
         <AnswerC>drawable/timor</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>A</Answer>
     </Item>
     <Item>
@@ -42,7 +42,7 @@
         <AnswerA>drawable/vietnam</AnswerA>
         <AnswerB>drawable/timor</AnswerB>
         <AnswerC>drawable/cambodia</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>B</Answer>
     </Item>
     <Item>
@@ -51,7 +51,7 @@
         <AnswerA>drawable/cambodia</AnswerA>
         <AnswerB>drawable/vietnam</AnswerB>
         <AnswerC>drawable/thailand</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>C</Answer>
     </Item>
     <Item>
@@ -69,7 +69,7 @@
         <AnswerA>drawable/brunei</AnswerA>
         <AnswerB>drawable/malaysia</AnswerB>
         <AnswerC>drawable/timor</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>D</Answer>
     </Item>
     <Item>
@@ -87,7 +87,52 @@
         <AnswerA>drawable/vietnam</AnswerA>
         <AnswerB>drawable/timor</AnswerB>
         <AnswerC>drawable/cambodia</AnswerC>
-        <AnswerD>drawable/laos</AnswerD>
+        <AnswerD>drawable/lao</AnswerD>
         <Answer>C</Answer>
+    </Item>
+    <Item>
+        <ID>11</ID>
+        <Question>BRAZIL</Question>
+        <AnswerA>drawable/argentina</AnswerA>
+        <AnswerB>drawable/brazil</AnswerB>
+        <AnswerC>drawable/peru</AnswerC>
+        <AnswerD>drawable/turkey</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>12</ID>
+        <Question>AUSTRALIA</Question>
+        <AnswerA>drawable/vietnam</AnswerA>
+        <AnswerB>drawable/australia</AnswerB>
+        <AnswerC>drawable/chile</AnswerC>
+        <AnswerD>drawable/japan</AnswerD>
+        <Answer>B</Answer>
+    </Item>
+    <Item>
+        <ID>13</ID>
+        <Question>CHILE</Question>
+        <AnswerA>drawable/chile</AnswerA>
+        <AnswerB>drawable/vietnam</AnswerB>
+        <AnswerC>drawable/thailand</AnswerC>
+        <AnswerD>drawable/lao</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+        <ID>14</ID>
+        <Question>ARGENTINA</Question>
+        <AnswerA>drawable/argentina</AnswerA>
+        <AnswerB>drawable/thailand</AnswerB>
+        <AnswerC>drawable/indonesia</AnswerC>
+        <AnswerD>drawable/lao</AnswerD>
+        <Answer>A</Answer>
+    </Item>
+    <Item>
+    <ID>15</ID>
+    <Question>PERU</Question>
+    <AnswerA>drawable/thailand</AnswerA>
+    <AnswerB>drawable/cambodia</AnswerB>
+    <AnswerC>drawable/peru</AnswerC>
+    <AnswerD>drawable/malaysia</AnswerD>
+    <Answer>C</Answer>
     </Item>
 </Questionare>

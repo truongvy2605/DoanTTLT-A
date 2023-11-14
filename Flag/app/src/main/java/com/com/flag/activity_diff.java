@@ -8,15 +8,27 @@ import android.widget.Button;
 
 public class activity_diff extends Activity {
     Button Easy, Hard, Expert;
+    String style;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            style = intent.getStringExtra("style");
+        }
+        else
+        {
+            style = "minitest";
+        }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_gamediff);
+        setContentView(R.layout.activity_diff);
         Easy = (Button)findViewById(R.id.ButtonDiffEasy);
         Easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_diff.this, activity_gameplay_2.class);
+                Intent intent = new Intent(activity_diff.this, activity_gameplay.class);
+                intent.putExtra("diff", "easy");
+                intent.putExtra("style", style);
                 startActivity(intent);
             }
         });
@@ -24,7 +36,9 @@ public class activity_diff extends Activity {
         Hard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_diff.this, activity_gameplay_hard_1.class);
+                Intent intent = new Intent(activity_diff.this, activity_gameplay.class);
+                intent.putExtra("diff", "hard");
+                intent.putExtra("style", style);
                 startActivity(intent);
             }
         });
@@ -32,7 +46,9 @@ public class activity_diff extends Activity {
         Expert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_diff.this, activity_gameplay_expert_1.class);
+                Intent intent = new Intent(activity_diff.this, activity_gameplay.class);
+                intent.putExtra("diff", "expert");
+                intent.putExtra("style", style);
                 startActivity(intent);
             }
         });
