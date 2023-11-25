@@ -1,11 +1,12 @@
 package com.com.flag;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,34 +14,27 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 class QuestionNare {
     public String ID;
-    public String Q;
+    public String Ques;
     public String AnswerA, AnswerB, AnswerC, AnswerD, Answer;
 }
 public class activity_gameplay extends Activity implements View.OnClickListener {
-    int pos = 0, pro = 0, HighScore = 0, id = 0, num = 20;
-    String diff = "", style = "";
+    int pos = 1, pro = 0, HighScore = 0, id = 0, num = 15;
+    String diff = "", style = "", path = "";
     ArrayList<QuestionNare> QuesList_layout1 = new ArrayList<>();
     ArrayList<QuestionNare> QuesList_layout2 = new ArrayList<>();
+    ArrayList<String> Name_Country = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -63,14 +57,29 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
         }
         else
         {
-            ReadData("data_easy_layout1.xml", QuesList_layout1);
-            ReadData("data_easy_layout2.xml", QuesList_layout2);
+            path = "Data_Easy";
+            StorageReference listRef = FirebaseStorage.getInstance().getReference().child(path);
+            listRef.listAll()
+                    .addOnSuccessListener(listResult -> {
+                        for (StorageReference item : listResult.getItems()) {
+                            Name_Country.add((item.getName().split("\\."))[0]);
+                        }
+                        ReadData("data_easy_layout1.xml", QuesList_layout1);
+                        ReadData("data_easy_layout2.xml", QuesList_layout2);
+                        try {
+                            Gameplay_layout1();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(activity_gameplay.this, "Error _ Retrieving Data", Toast.LENGTH_SHORT).show());
         }
         if (Objects.equals(style, "suddendeath"))
         {
             num = 50;
         }
-        Gameplay_layout2();
+
     }
     @Override
     public void onClick(View v) {
@@ -78,32 +87,32 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
         int temp = pro;
         if (pos % 2 == 0) {
             if (idCheck == R.id.IButtonLayout2AnsA) {
-                if (QuesList_layout2.get(id).Answer.compareTo("A") == 0)
+                if (QuesList_layout2.get(id).Answer.compareTo("0") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.IButtonLayout2AnsB) {
-                if (QuesList_layout2.get(id).Answer.compareTo("B") == 0)
+                if (QuesList_layout2.get(id).Answer.compareTo("1") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.IButtonLayout2AnsC) {
-                if (QuesList_layout2.get(id).Answer.compareTo("C") == 0)
+                if (QuesList_layout2.get(id).Answer.compareTo("2") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.IButtonLayout2AnsD) {
-                if (QuesList_layout2.get(id).Answer.compareTo("D") == 0)
+                if (QuesList_layout2.get(id).Answer.compareTo("3") == 0)
                     pro = pro + 10;
             }
             QuesList_layout2.remove(id);
         }
         else {
             if (idCheck == R.id.ButtonLayout1AnsA) {
-                if (QuesList_layout1.get(id).Answer.compareTo("A") == 0)
+                if (QuesList_layout1.get(id).Answer.compareTo("0") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.ButtonLayout1AnsB) {
-                if (QuesList_layout1.get(id).Answer.compareTo("B") == 0)
+                if (QuesList_layout1.get(id).Answer.compareTo("1") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.ButtonLayout1AnsC) {
-                if (QuesList_layout1.get(id).Answer.compareTo("C") == 0)
+                if (QuesList_layout1.get(id).Answer.compareTo("2") == 0)
                     pro = pro + 10;
             } else if (idCheck == R.id.ButtonLayout1AnsD) {
-                if (QuesList_layout1.get(id).Answer.compareTo("D") == 0)
+                if (QuesList_layout1.get(id).Answer.compareTo("3") == 0)
                     pro = pro + 10;
             }
             QuesList_layout1.remove(id);
@@ -131,18 +140,22 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
             }
             else
             {
-                Gameplay_layout1();
+                try {
+                    Gameplay_layout1();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
 
-    private void Gameplay_layout1(){
+    private void Gameplay_layout1() throws IOException {
         setContentView(R.layout.activity_gamelayout_1);
         Display_layout1(QuesList_layout1);
         int[] Arr = {R.id.ButtonLayout1AnsA, R.id.ButtonLayout1AnsB,
                 R.id.ButtonLayout1AnsC, R.id.ButtonLayout1AnsD};
         for (int id : Arr) {
-            View v = (View) findViewById(id);
+            View v = findViewById(id);
             v.setOnClickListener(this);
         }
     }
@@ -152,7 +165,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
         int[] Arr = {R.id.IButtonLayout2AnsA, R.id.IButtonLayout2AnsB,
                 R.id.IButtonLayout2AnsC, R.id.IButtonLayout2AnsD};
         for (int id : Arr) {
-            View v = (View) findViewById(id);
+            View v = findViewById(id);
             v.setOnClickListener(this);
         }
     }
@@ -162,7 +175,19 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
         TextView Result;
         Result = findViewById(R.id.TextLayout1Result);
         ((TextView) findViewById(R.id.TextLayout1QuesID)).setText("QUESTION " + pos);
-        ((ImageView) findViewById(R.id.ImgLayout1Question)).setImageResource(this.getResources().getIdentifier(L.get(id).Q, null, this.getPackageName()));
+        StorageReference storeref;
+        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).Ques + ".png");
+        try {
+            File tempfile = File.createTempFile("tempfile", ".png");
+            storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                ((ImageView) findViewById(R.id.ImgLayout1Question)).setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 1", Toast.LENGTH_SHORT).show());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        //((ImageView) findViewById(R.id.ImgLayout1Question)).setImageResource(this.getResources().getIdentifier(L.get(id).Q, null, this.getPackageName()));
         ((Button) findViewById(R.id.ButtonLayout1AnsA)).setText(L.get(id).AnswerA);
         ((Button) findViewById(R.id.ButtonLayout1AnsB)).setText(L.get(id).AnswerB);
         ((Button) findViewById(R.id.ButtonLayout1AnsC)).setText(L.get(id).AnswerC);
@@ -175,16 +200,84 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
         TextView Result;
         Result = findViewById(R.id.TextLayout2Result);
         ((TextView) findViewById(R.id.TextLayout2QuesID)).setText("QUESTION " + pos);
-        ((TextView) findViewById(R.id.TextLayout2Question)).setText(L.get(id).Q);
-        ((ImageButton) findViewById(R.id.IButtonLayout2AnsA)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerA, null, this.getPackageName()));
-        ((ImageButton) findViewById(R.id.IButtonLayout2AnsB)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerB, null, this.getPackageName()));
-        ((ImageButton) findViewById(R.id.IButtonLayout2AnsC)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerC, null, this.getPackageName()));
-        ((ImageButton) findViewById(R.id.IButtonLayout2AnsD)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerD, null, this.getPackageName()));
+        ((TextView) findViewById(R.id.TextLayout2Question)).setText(L.get(id).Ques);
+        StorageReference storeref;
+        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerA + ".png");
+        try {
+            File tempfile = File.createTempFile("tempfile", ".png");
+            storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                ((ImageButton) findViewById(R.id.IButtonLayout2AnsA)).setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 2", Toast.LENGTH_SHORT).show());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerB + ".png");
+        try {
+            File tempfile = File.createTempFile("tempfile", ".png");
+            storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                ((ImageButton) findViewById(R.id.IButtonLayout2AnsB)).setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 2", Toast.LENGTH_SHORT).show());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerC + ".png");
+        try {
+            File tempfile = File.createTempFile("tempfile", ".png");
+            storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                ((ImageButton) findViewById(R.id.IButtonLayout2AnsC)).setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 2", Toast.LENGTH_SHORT).show());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerD + ".png");
+        try {
+            File tempfile = File.createTempFile("tempfile", ".png");
+            storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                ((ImageButton) findViewById(R.id.IButtonLayout2AnsD)).setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 2", Toast.LENGTH_SHORT).show());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
+        ((ImageButton) findViewById(R.id.IButtonLayout2AnsA)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerA + ".png", null, this.getPackageName()));
+        ((ImageButton) findViewById(R.id.IButtonLayout2AnsB)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerB + ".png", null, this.getPackageName()));
+        ((ImageButton) findViewById(R.id.IButtonLayout2AnsC)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerC + ".png", null, this.getPackageName()));
+        ((ImageButton) findViewById(R.id.IButtonLayout2AnsD)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerD + ".png", null, this.getPackageName()));
+        */
         Result.setText("score: " + pro);
     }
 
     private void ReadData(String filename, ArrayList<QuestionNare> list) {
-        try {
+        ArrayList<String> Temp_Country = new ArrayList<>(Name_Country);
+        for (int i = 0; i < 35; i++) {
+            if (Temp_Country.size() < 5){
+                Temp_Country = new ArrayList<>(Name_Country);
+            }
+            QuestionNare Q1 = new QuestionNare();
+            Q1.ID = "" + (i + 1);
+            ArrayList<String> Answer = new ArrayList<>();
+            for (int j = 0; j < 4; j++) {
+                Answer.add(RandomCountry(Temp_Country));
+                Temp_Country.remove(Answer.get(Answer.size()-1));
+            }
+            Q1.AnswerA = Answer.get(0);
+            Q1.AnswerB = Answer.get(1);
+            Q1.AnswerC = Answer.get(2);
+            Q1.AnswerD = Answer.get(3);
+            int temp = RandomQuesID(Answer);
+            Q1.Ques =  Answer.get(temp);
+            Q1.Answer = "" + temp;
+            list.add(Q1);
+        }
+        /*try {
             DocumentBuilderFactory DBF = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = DBF.newDocumentBuilder();
             InputStream in = getAssets().open(filename);
@@ -222,7 +315,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     void LoadHighScore(){
         SharedPreferences sharedPreferences = getSharedPreferences("MyData",
@@ -239,5 +332,13 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
     }
     public int RandomExamID(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
+    }
+    public int RandomQuesID(ArrayList<String> answer)
+    {
+        return (int) ((Math.random() * (answer.size())));
+    }
+    public String RandomCountry(ArrayList<String> data) {
+        int randomID = (int) ((Math.random() * (data.size())));
+        return data.get(randomID);
     }
 }
