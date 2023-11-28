@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1056213861503",
+    "project_id": "flag-b19d3",
+    "storage_bucket": "flag-b19d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056213861503:android:977888a2d088f09a842b4a",
+        "android_client_info": {
+          "package_name": "com.com.flag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6w7mZQjK92u0uxFAHQS_xKiF6j-1b-B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
