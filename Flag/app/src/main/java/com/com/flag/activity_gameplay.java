@@ -30,6 +30,12 @@ class QuestionNare {
     public String AnswerA, AnswerB, AnswerC, AnswerD, Answer;
 }
 public class activity_gameplay extends Activity implements View.OnClickListener {
+    private Button stopMusicButton;
+    private void sendStopMusicRequest() {
+        Intent stopIntent = new Intent(activity_gameplay.this, MainActivity.class);
+        stopIntent.putExtra("stopMusic", true);
+        startActivity(stopIntent);
+    }
     int pos = 1, pro = 0, HighScore = 0, id = 0, num = 15;
     String diff = "", style = "", path = "";
     ArrayList<QuestionNare> QuesList_layout1 = new ArrayList<>();
@@ -152,6 +158,13 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
     private void Gameplay_layout1() throws IOException {
         setContentView(R.layout.activity_gamelayout_1);
         Display_layout1(QuesList_layout1);
+        stopMusicButton = findViewById(R.id.stopButton);
+        stopMusicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+                sendStopMusicRequest();
+            }
+        });
         int[] Arr = {R.id.ButtonLayout1AnsA, R.id.ButtonLayout1AnsB,
                 R.id.ButtonLayout1AnsC, R.id.ButtonLayout1AnsD};
         for (int id : Arr) {
@@ -162,6 +175,13 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
     private void Gameplay_layout2(){
         setContentView(R.layout.activity_gamelayout_2);
         Display_layout2(QuesList_layout2);
+        stopMusicButton = findViewById(R.id.stopButton);
+        stopMusicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+                sendStopMusicRequest();
+            }
+        });
         int[] Arr = {R.id.IButtonLayout2AnsA, R.id.IButtonLayout2AnsB,
                 R.id.IButtonLayout2AnsC, R.id.IButtonLayout2AnsD};
         for (int id : Arr) {
