@@ -30,6 +30,12 @@ class QuestionNare {
     public String AnswerA, AnswerB, AnswerC, AnswerD, Answer;
 }
 public class activity_gameplay extends Activity implements View.OnClickListener {
+    private Button stopMusicButton;
+    private void sendStopMusicRequest() {
+        Intent stopIntent = new Intent(activity_gameplay.this, MainActivity.class);
+        stopIntent.putExtra("stopMusic", true);
+        startActivity(stopIntent);
+    }
     int pos = 1, pro = 0, HighScore = 0, id = 0, num = 15;
     String diff = "", style = "", path = "";
     ArrayList<QuestionNare> QuesList_layout1 = new ArrayList<>();
@@ -37,6 +43,13 @@ public class activity_gameplay extends Activity implements View.OnClickListener 
     ArrayList<String> Name_Country = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        stopMusicButton = findViewById(R.id.stopButton);
+        stopMusicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+                sendStopMusicRequest();
+            }
+        });
         Intent intent = getIntent();
         if (intent != null)
         {

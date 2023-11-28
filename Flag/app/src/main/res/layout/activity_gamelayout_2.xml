@@ -127,6 +127,14 @@
             tools:ignore="MissingConstraints"
             tools:layout_marginLeft="110dp"
             tools:layout_editor_absoluteY="200dp" />
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/IButtonLayout2AnsD"
+            android:layout_alignRight="@+id/IButtonLayout2AnsD"
+            android:background="@drawable/baseline_pause_circle_24"
+            />
 
     </RelativeLayout>
 
