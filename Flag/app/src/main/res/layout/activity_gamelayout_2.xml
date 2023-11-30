@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009999"
-    tools:context=".MainActivity">
+    tools:context=".activity_gameplay">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/TextLayout2QuesID"
+            android:id="@+id/TextQuesID"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="#CCFFFF"
@@ -27,113 +27,137 @@
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="60dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="60dp"/>
 
         <TextView
-            android:id="@+id/TextLayout2Question"
+            android:id="@+id/Layout2_TextQuestion"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:background="#CCFFFF"
             android:text=""
-            android:textAlignment="center"
+            android:gravity="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="38dp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="200dp"
-            android:layout_below="@+id/TextLayout2QuesID"
+            android:layout_below="@+id/TextQuesID"
             android:layout_marginTop="90dp"/>
 
         <ImageButton
-            android:id="@+id/IButtonLayout2AnsA"
+            android:id="@+id/ButtonAnsA"
             android:layout_width="200dp"
             android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:contentDescription="AnswerA"
-            android:hint="AnswerA"
             android:backgroundTint="#99CCCC"
             android:scaleType="fitXY"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="5dp"
-            tools:layout_editor_absoluteY="350dp"
-            android:layout_below="@+id/TextLayout2Question"
+            android:layout_below="@+id/Layout2_TextQuestion"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginStart="5dp"/>
 
         <ImageButton
-            android:id="@+id/IButtonLayout2AnsB"
+            android:id="@+id/ButtonAnsB"
             android:layout_width="200dp"
             android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:contentDescription="AnswerB"
-            android:hint="AnswerB"
             android:backgroundTint="#99CCCC"
             android:scaleType="fitXY"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="210dp"
-            tools:layout_editor_absoluteY="350dp"
-            android:layout_below="@+id/IButtonLayout2AnsA"
+            android:layout_below="@+id/ButtonAnsA"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginStart="5dp"/>
 
         <ImageButton
-            android:id="@+id/IButtonLayout2AnsC"
+            android:id="@+id/ButtonAnsC"
             android:layout_width="200dp"
             android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:contentDescription="AnswerC"
-            android:hint="AnswerC"
             android:backgroundTint="#99CCCC"
             android:scaleType="fitXY"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="05dp"
             tools:layout_editor_absoluteY="475dp"
-            android:layout_below="@+id/TextLayout2Question"
+            android:layout_below="@+id/Layout2_TextQuestion"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/IButtonLayout2AnsA"/>
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/ButtonAnsA"/>
 
         <ImageButton
-            android:id="@+id/IButtonLayout2AnsD"
+            android:id="@+id/ButtonAnsD"
             android:layout_width="200dp"
             android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:contentDescription="AnswerD"
-            android:hint="AnswerD"
             android:scaleType="fitXY"
             android:backgroundTint="#99CCCC"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="210dp"
             tools:layout_editor_absoluteY="475dp"
-            android:layout_below="@+id/IButtonLayout2AnsC"
+            android:layout_below="@+id/ButtonAnsC"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/IButtonLayout2AnsB"/>
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/ButtonAnsB"/>
 
         <TextView
-            android:id="@+id/TextLayout2Result"
-            android:layout_width="200dp"
-            android:layout_height="38dp"
-            android:layout_below="@+id/IButtonLayout2AnsD"
-            android:layout_marginTop="50dp"
-            android:background="@android:color/transparent"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_marginLeft="110dp"
-            tools:layout_editor_absoluteY="200dp" />
-        <Button
-            android:id="@+id/stopButton"
+            android:id="@+id/TextResult"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_below="@+id/IButtonLayout2AnsD"
-            android:layout_alignRight="@+id/IButtonLayout2AnsD"
-            android:background="@drawable/baseline_pause_circle_24"
+            android:background="@android:color/transparent"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/ButtonStopMusic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="StopMusic"
+            android:layout_marginLeft="360dp"
+            android:background="@drawable/baseline_pause_circle_24" />
+
+        <Button
+            android:id="@+id/ButtonHelp1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="100dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/ButtonHelp2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="100dp"
+            android:text="2"  />
+
+        <Button
+            android:id="@+id/ButtonHelp3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="100dp"
+            android:text="3" />
+
+        <ProgressBar
+            android:id="@+id/ProgressbarCountdown"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:max="30"
+            android:progress="30"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="80dp"
             />
 
     </RelativeLayout>
