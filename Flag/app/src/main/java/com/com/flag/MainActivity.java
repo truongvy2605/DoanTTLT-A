@@ -9,7 +9,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
 
@@ -23,16 +23,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setIntent(new Intent()); // Xóa Intent để tránh việc lặp lại khi quay lại MainActivity
-    }
-    private MediaPlayer mediaPlayer;
-    private boolean isPlaying = false;
+    }*/
+    static MediaPlayer BackgroundMusic;
+    //private boolean isPlaying = false;
     Button PlayGame;
     EditText Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mediaPlayer = MediaPlayer.create(this, R.raw.nhacnen);
+        BackgroundMusic = MediaPlayer.create(this, R.raw.backgroundmusic);
         Name = findViewById(R.id.EditMainName);
         /* CHỨC NĂNG PLAY GAME */
         PlayGame = findViewById(R.id.ButtonMainPlay);
@@ -46,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("PlayerName", PlayerName);
                 intent.putExtra("MyPackage", bundle);
-                playMusic();
+                BackgroundMusic.start();
                 startActivity(intent);
             }
         });
     }
-    private void playMusic() {
+/*    private void playMusic() {
         if (!isPlaying) {
-            mediaPlayer.start();
+            BackgroundMusic.start();
             isPlaying = true;
         }
     }
     private void pauseMusic() {
         if (isPlaying) {
-            mediaPlayer.pause();
+            BackgroundMusic.pause();
             isPlaying = false;
         }
-    }
+    }*/
 }

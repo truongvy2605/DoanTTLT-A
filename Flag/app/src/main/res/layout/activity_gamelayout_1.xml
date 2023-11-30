@@ -6,44 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009999"
-    tools:context=".MainActivity">
+    tools:context=".activity_gameplay">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/TextLayout1QuesID"
+            android:id="@+id/TextQuesID"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="#CCFFFF"
             android:text=""
-            android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="38dp"
             android:textStyle="bold"
+            android:gravity="center"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="60dp"
             android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"/>
 
         <ImageView
-            android:id="@+id/ImgLayout1Question"
+            android:id="@+id/Layout1_ImgQuestion"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:src="@null"
             android:scaleType="fitXY"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="126dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/TextLayout1QuesID"
+            android:layout_below="@+id/TextQuesID"
             android:layout_centerHorizontal="true"/>
 
         <Button
-            android:id="@+id/ButtonLayout1AnsA"
+            android:id="@+id/ButtonAnsA"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
@@ -52,15 +48,15 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center"
+            android:contentDescription="AnswerA"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="425dp"
-            android:layout_below="@+id/ImgLayout1Question"
+            android:layout_below="@+id/Layout1_ImgQuestion"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/ButtonLayout1AnsB"
+            android:id="@+id/ButtonAnsB"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
@@ -69,15 +65,15 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center"
+            android:contentDescription="AnswerB"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="510dp"
-            android:layout_below="@+id/ButtonLayout1AnsA"
+            android:layout_below="@+id/ButtonAnsA"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/ButtonLayout1AnsC"
+            android:id="@+id/ButtonAnsC"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
@@ -86,15 +82,15 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center"
+            android:contentDescription="AnswerC"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="589dp"
-            android:layout_below="@+id/ButtonLayout1AnsB"
+            android:layout_below="@+id/ButtonAnsB"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
 
         <Button
-            android:id="@+id/ButtonLayout1AnsD"
+            android:id="@+id/ButtonAnsD"
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:backgroundTint="#99CCCC"
@@ -103,35 +99,71 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:gravity="center"
+            android:contentDescription="AnswerD"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="80dp"
-            tools:layout_editor_absoluteY="347dp"
-            android:layout_below="@+id/ButtonLayout1AnsC"
+            android:layout_below="@+id/ButtonAnsC"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
+
         <TextView
-            android:id="@+id/TextLayout1Result"
-            android:layout_width="200dp"
-            android:layout_height="38dp"
-            android:layout_below="@+id/ButtonLayout1AnsD"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_marginLeft="110dp"
-            tools:layout_editor_absoluteY="200dp" />
-        <Button
-            android:id="@+id/stopButton"
+            android:id="@+id/TextResult"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_below="@+id/ButtonLayout1AnsD"
-            android:layout_toRightOf="@+id/ButtonLayout1AnsD"
-            android:background="@drawable/baseline_pause_circle_24"
+            android:background="@android:color/transparent"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/ButtonStopMusic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="StopMusic"
+            android:layout_marginStart="360dp"
+            android:background="@drawable/baseline_pause_circle_24" />
+
+        <ProgressBar
+            android:id="@+id/ProgressbarCountdown"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:max="30"
+            android:progress="30"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="80dp"
             />
+
+
+        <Button
+            android:id="@+id/ButtonHelp1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/ButtonHelp2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="30dp"
+            android:text="2"  />
+
+        <Button
+            android:id="@+id/ButtonHelp3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="30dp"
+            android:text="3" />
 
     </RelativeLayout>
 
