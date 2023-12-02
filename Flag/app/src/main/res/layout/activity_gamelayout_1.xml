@@ -18,14 +18,14 @@
             android:layout_height="50dp"
             android:background="#CCFFFF"
             android:text=""
+            android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="38dp"
             android:textStyle="bold"
-            android:gravity="center"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="60dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"/>
 
         <ImageView
             android:id="@+id/Layout1_ImgQuestion"
@@ -165,7 +165,20 @@
             android:layout_marginTop="30dp"
             android:text="3" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/ButtonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="NEXT"
+            android:textStyle="bold"
+            android:textSize = "18dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_below="@+id/ButtonAnsD"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="30dp"
+            />
 
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

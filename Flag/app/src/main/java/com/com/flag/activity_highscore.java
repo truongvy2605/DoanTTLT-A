@@ -25,7 +25,7 @@ public class activity_highscore extends Activity {
         PlayGame = (Button)findViewById(R.id.ButtonHSPG);
         Exit= (Button)findViewById(R.id.ButtonHSExit);
         Intent callerIntent=getIntent();
-        Bundle packageFromCaller= callerIntent.getBundleExtra("MyPackage");
+        Bundle packageFromCaller = callerIntent.getBundleExtra("MyPackage");
         PlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

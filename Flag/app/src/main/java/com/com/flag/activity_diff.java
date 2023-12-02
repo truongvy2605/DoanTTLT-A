@@ -12,12 +12,10 @@ public class activity_diff extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        if (intent != null)
-        {
+        if (intent != null) {
             style = intent.getStringExtra("style");
         }
-        else
-        {
+        else {
             style = "minitest";
         }
         super.onCreate(savedInstanceState);
