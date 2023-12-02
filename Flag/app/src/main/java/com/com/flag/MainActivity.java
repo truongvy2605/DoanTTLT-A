@@ -9,30 +9,14 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("stopMusic")) {
-            boolean stopMusic = intent.getBooleanExtra("stopMusic", false);
-
-            if (stopMusic) {
-                pauseMusic(); // Gọi phương thức dừng nhạc của MainActivity
-            }
-        }
-
-        setIntent(new Intent()); // Xóa Intent để tránh việc lặp lại khi quay lại MainActivity
-    }*/
     static MediaPlayer BackgroundMusic;
-    //private boolean isPlaying = false;
     Button PlayGame;
     EditText Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BackgroundMusic = MediaPlayer.create(this, R.raw.backgroundmusic);
+        //BackgroundMusic = MediaPlayer.create(this, R.raw.backgroundmusic);
         Name = findViewById(R.id.EditMainName);
         /* CHỨC NĂNG PLAY GAME */
         PlayGame = findViewById(R.id.ButtonMainPlay);
@@ -46,21 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("PlayerName", PlayerName);
                 intent.putExtra("MyPackage", bundle);
-                BackgroundMusic.start();
+                //BackgroundMusic.start();
                 startActivity(intent);
             }
         });
     }
-/*    private void playMusic() {
-        if (!isPlaying) {
-            BackgroundMusic.start();
-            isPlaying = true;
-        }
-    }
-    private void pauseMusic() {
-        if (isPlaying) {
-            BackgroundMusic.pause();
-            isPlaying = false;
-        }
-    }*/
 }

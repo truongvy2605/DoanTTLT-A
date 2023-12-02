@@ -9,10 +9,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -27,10 +28,8 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
 
 class QuestionNare {
     public String ID;
@@ -38,28 +37,38 @@ class QuestionNare {
     public String AnswerA, AnswerB, AnswerC, AnswerD, Answer;
 }
 public class activity_gameplay extends Activity implements View.OnClickListener, View.OnLongClickListener {
-    private Button stopMusicButton;
-    boolean Help1 = true, Help2 = true;
-    int[] ButtonArr = {R.id.ButtonAnsA, R.id.ButtonAnsB,
-            R.id.ButtonAnsC, R.id.ButtonAnsD, R.id.ButtonStopMusic, R.id.ButtonHelp1, R.id.ButtonHelp2};
-    int pos = 1, pro = 0, HighScore = 0, id = 0, num = 15;
-    String diff = "", style = "", path = "";
-    ArrayList<QuestionNare> QuesList = new ArrayList<>();
-    ArrayList<String> Countries = new ArrayList<>();
-    TextToSpeech AnswerTTS;
-    ProgressBar CountdownPB;
-    CountDownTimer CountdownTimer;
+    private boolean Help1 = true, Help2 = true, Help3 = true, AnswerCheck = false;
+    private final int[] ButtonArr = {R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD,
+            R.id.ButtonStopMusic, R.id.ButtonHelp1, R.id.ButtonHelp2, R.id.ButtonHelp3, R.id.ButtonNext};
+    private int pos = 1, pro = 0, HighScore = 0, id = 0, num = 15;
+    private String diff = "", style = "", path = "";
+    private final ArrayList<QuestionNare> QuesList = new ArrayList<>();
+    private final ArrayList<String> Countries = new ArrayList<>();
+    private TextToSpeech AnswerTTS;
+    private ProgressBar CountdownPB;
+    private CountDownTimer CountdownTimer;
+    private SoundPool Soundpool;
+    int soundStartGame, soundGoodEG, soundBadEG, soundRightAns, soundWrongAns;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AnswerTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS)
-                    AnswerTTS.setLanguage(Locale.ENGLISH);
-            }
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .build();
+        Soundpool = new SoundPool.Builder()
+                .setAudioAttributes(attributes)
+                .setMaxStreams(1).build();
+        soundStartGame = Soundpool.load(this, R.raw.startgame, 1);
+        soundGoodEG = Soundpool.load(this, R.raw.goodendgame, 1);
+        soundBadEG = Soundpool.load(this, R.raw.badendgame, 1);
+        soundWrongAns = Soundpool.load(this, R.raw.wrongans, 1);
+        soundRightAns = Soundpool.load(this, R.raw.rightans, 1);
+        AnswerTTS = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS)
+                AnswerTTS.setLanguage(Locale.ENGLISH);
         });
-
         Intent intent = getIntent();
         if (intent != null)
         {
@@ -79,7 +88,15 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
                     for (StorageReference item : listResult.getItems()) {
                         Countries.add((item.getName().split("\\."))[0]);
                     }
+                    BackgroundMusic.pause();
+                    Soundpool.play(soundStartGame, 1, 1, 0, 0, 1);
                     ReadData(QuesList);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    BackgroundMusic.start();
                     Gameplay_layout1();
                 })
                 .addOnFailureListener(e ->
@@ -93,6 +110,8 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     public boolean onLongClick(View v) {
         int idCheck = v.getId();
         if (pos % 2 == 0) {
+            if (idCheck == R.id.Layout2_TextQuestion)
+                AnswerTTS.speak(QuesList.get(id).Ques, TextToSpeech.QUEUE_FLUSH, null);
         }
         else {
             if (idCheck == R.id.ButtonAnsA) {
@@ -110,7 +129,6 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         int idCheck = v.getId();
-        int temp = pro;
         if (idCheck == R.id.ButtonStopMusic){
             if (BackgroundMusic.isPlaying()){
                 BackgroundMusic.pause();
@@ -125,24 +143,38 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         }
         else if (idCheck == R.id.ButtonHelp2) {
             Help2 = false;
-            String temp1= RandomAnswerID(QuesList.get(id).Answer);
-            String temp2 = temp1;
-            while (Objects.equals(temp1, temp2)){
-                temp2 = RandomAnswerID(QuesList.get(id).Answer);
+            int temp1 = 0, temp2 = 0;
+            while (temp1 == temp2){
+                temp1 = RandomAnswerID(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, AnswerIDtoButtonID(QuesList.get(id).Answer));
+                temp2 = RandomAnswerID(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, AnswerIDtoButtonID(QuesList.get(id).Answer));
             }
+            DisableAnswerButton(new int[]{temp1, temp2});
+        }
+        else if (idCheck == R.id.ButtonHelp3) {
+            Help3 = false;
+            DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD});
+        }
+        else if (idCheck == R.id.ButtonNext) {
+            pos++;
+            if (CountdownTimer != null)
+                CountdownTimer.cancel();
+            QuesList.remove(id);
+            NextGameplay(pos);
         }
         else {
-            if (CheckAnswer(idCheck)) {
-                pro = pro + 10;
-            }
-            else {
-                if (Objects.equals(style, "suddendeath"))
-                {
-                    pos = num;
+            if (!AnswerCheck) {
+                if (CheckAnswer(idCheck))
+                    pro = pro + 1;
+                else {
+                    if (Objects.equals(style, "suddendeath"))
+                        pos = num;
                 }
             }
-            pos++;
             if (pos >= num) {
+                if (pro >= 10)
+                    Soundpool.play(soundGoodEG, 1, 1, 0, 0, 1);
+                else
+                    Soundpool.play(soundBadEG, 1, 1, 0, 0, 1);
                 Intent intent = new Intent(activity_gameplay.this, activity_result.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Progress", pro);
@@ -155,39 +187,40 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
                 }
                 finish();
             }
-            else {
-                NextGameplay(pos);
-            }
+
         }
     }
 
     private boolean CheckAnswer(int idCheck) {
-        CountdownTimer.cancel();
-        for (int j : ButtonArr) {
-            if (pos % 2 == 0) {
-                ((ImageButton) findViewById(j)).setEnabled(false);
-            } else {
-                ((Button) findViewById(j)).setEnabled(false);
-            }
-        }
+        if (CountdownTimer != null)
+            CountdownTimer.cancel();
+        DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD});
+        DisableHelpButton();
+        boolean correct = false;
         if (idCheck == R.id.ButtonAnsA) {
             if (QuesList.get(id).Answer.compareTo("0") == 0)
-                return true;
+                correct = true;
         } else if (idCheck == R.id.ButtonAnsB) {
             if (QuesList.get(id).Answer.compareTo("1") == 0)
-                return true;
+                correct = true;
         } else if (idCheck == R.id.ButtonAnsC) {
             if (QuesList.get(id).Answer.compareTo("2") == 0)
-                return true;
+                correct = true;
         } else if (idCheck == R.id.ButtonAnsD) {
             if (QuesList.get(id).Answer.compareTo("3") == 0)
-                return true;
+                correct = true;
         }
-        QuesList.remove(id);
-        return false;
+        if (correct) {
+            Soundpool.play(soundRightAns, 1, 1, 0, 0, (float)1.5);
+        }
+        else {
+            Soundpool.play(soundWrongAns, 1, 1, 0, 0, (float)1.5);
+        }
+        return correct;
     }
     private void NextGameplay(int pos)
     {
+        AnswerCheck = false;
         if (pos % 2 == 0)
             Gameplay_layout2();
         else
@@ -198,6 +231,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         Display_layout1(QuesList);
         ((Button) findViewById(R.id.ButtonHelp1)).setEnabled(Help1);
         ((Button) findViewById(R.id.ButtonHelp2)).setEnabled(Help2);
+        ((Button) findViewById(R.id.ButtonHelp3)).setEnabled(Help3);
         StartCountDown();
         for (int id : ButtonArr) {
             View v = findViewById(id);
@@ -210,11 +244,14 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         Display_layout2(QuesList);
         ((Button) findViewById(R.id.ButtonHelp1)).setEnabled(Help1);
         ((Button) findViewById(R.id.ButtonHelp2)).setEnabled(Help2);
+        ((Button) findViewById(R.id.ButtonHelp3)).setEnabled(Help3);
         StartCountDown();
         for (int id : ButtonArr) {
             View v = findViewById(id);
             v.setOnClickListener(this);
         }
+        View z = findViewById(R.id.Layout2_TextQuestion);
+        z.setOnLongClickListener(this);
     }
 
     private void StartCountDown() {
@@ -236,7 +273,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
 
     @SuppressLint({"SetTextI18n", "DiscouragedApi"})
     private void Display_layout1(ArrayList<QuestionNare> L) {
-        id = RandomExamID(0, L.size());
+        id = RandomExamID(L.size());
         TextView Result;
         Result = findViewById(R.id.TextResult);
         ((TextView) findViewById(R.id.TextQuesID)).setText("QUESTION " + pos);
@@ -261,13 +298,30 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     }
     @SuppressLint({"SetTextI18n", "DiscouragedApi"})
     private void Display_layout2(ArrayList<QuestionNare> L) {
-        id = RandomExamID(0, L.size());
+        id = RandomExamID(L.size());
         TextView Result;
         Result = findViewById(R.id.TextResult);
         ((TextView) findViewById(R.id.TextQuesID)).setText("QUESTION " + pos);
-        ((TextView) findViewById(R.id.Layout2_TextQuestion)).setText(L.get(id).Ques);
+        ((Button) findViewById(R.id.Layout2_TextQuestion)).setText(L.get(id).Ques);
+        int index = 0;
         StorageReference storeref;
-        storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerA + ".png");
+        for (String context : new String[]{L.get(id).AnswerA, L.get(id).AnswerB, L.get(id).AnswerC, L.get(id).AnswerD}) {
+            storeref = FirebaseStorage.getInstance().getReference(path + "/" + context + ".png");
+            try {
+                File tempfile = File.createTempFile("tempfile", ".png");
+                int finalIndex = index;
+                storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
+                    Bitmap bitmap = BitmapFactory.decodeFile(tempfile.getAbsolutePath());
+                    ((ImageButton) findViewById(ButtonArr[finalIndex])).setImageBitmap(bitmap);
+                }).addOnFailureListener(e -> Toast.makeText(activity_gameplay.this, "Error _ Game Layout 2", Toast.LENGTH_SHORT).show());
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            index++;
+        }
+        Result.setText("" + pro);
+        /*storeref = FirebaseStorage.getInstance().getReference(path + "/" + L.get(id).AnswerA + ".png");
         try {
             File tempfile = File.createTempFile("tempfile", ".png");
             storeref.getFile(tempfile).addOnSuccessListener(taskSnapshot -> {
@@ -310,14 +364,13 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         /*
         ((ImageButton) findViewById(R.id.IButtonLayout2AnsA)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerA + ".png", null, this.getPackageName()));
         ((ImageButton) findViewById(R.id.IButtonLayout2AnsB)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerB + ".png", null, this.getPackageName()));
         ((ImageButton) findViewById(R.id.IButtonLayout2AnsC)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerC + ".png", null, this.getPackageName()));
         ((ImageButton) findViewById(R.id.IButtonLayout2AnsD)).setImageResource(this.getResources().getIdentifier(L.get(id).AnswerD + ".png", null, this.getPackageName()));
         */
-        Result.setText("" + pro);
     }
 
     private void ReadData(ArrayList<QuestionNare> list) {
@@ -395,16 +448,16 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         editor.putInt("H",HighScore);
         editor.apply();
     }
-    private int RandomExamID(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+    private int RandomExamID(int max) {
+        return (int) ((Math.random() * (max)) + 0);
     }
-    private String RandomAnswerID(String CorrectAnswer)
+    private int RandomAnswerID(int[] arr, int ans)
     {
-        String temp = CorrectAnswer;
-        while (Objects.equals(temp, CorrectAnswer)){
-            temp = "" + ((int) ((Math.random() * 3) + 0));
-        }
-        return temp;
+        int temp;
+        do {
+            temp = (int) (Math.random() * arr.length);
+        } while (arr[temp] == ans);
+        return arr[temp];
     }
     private int RandomQuesID(ArrayList<String> answer)
     {
@@ -413,5 +466,34 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     private String RandomCountry(ArrayList<String> data) {
         int randomID = (int) ((Math.random() * (data.size())));
         return data.get(randomID);
+    }
+    private int AnswerIDtoButtonID(String id) {
+        if (Objects.equals(id, "0"))
+            return R.id.ButtonAnsA;
+        else if (Objects.equals(id, "1"))
+            return R.id.ButtonAnsB;
+        else if (Objects.equals(id, "2"))
+            return R.id.ButtonAnsC;
+        else
+            return R.id.ButtonAnsD;
+    }
+    private void DisableAnswerButton(int[] arr) {
+        for (int j : arr) {
+            if (j == AnswerIDtoButtonID(QuesList.get(id).Answer))
+                continue;
+            if (pos % 2 == 0) {
+                ((ImageButton) findViewById(j)).setImageBitmap(null);
+                ((ImageButton) findViewById(j)).setEnabled(false);
+            }
+            else {
+                ((Button) findViewById(j)).setText("");
+                ((Button) findViewById(j)).setEnabled(false);
+            }
+        }
+    }
+    private void DisableHelpButton() {
+        for (int i : new int[]{R.id.ButtonHelp1, R.id.ButtonHelp2, R.id.ButtonHelp3}) {
+            ((Button) findViewById(i)).setEnabled(false);
+        }
     }
 }
