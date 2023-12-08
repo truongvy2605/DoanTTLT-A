@@ -9,10 +9,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +93,11 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
             path = "Data_Expert";
         else
             path = "Data_Easy";
+        if (Objects.equals(style, "suddendeath"))
+        {
+            num = 1000;
+            path = "Data_SuddenDeath";
+        }
         StorageReference listRef = FirebaseStorage.getInstance().getReference().child(path);
         listRef.listAll()
                 .addOnSuccessListener(listResult -> {
@@ -89,22 +105,20 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
                         Countries.add((item.getName().split("\\."))[0]);
                     }
                     BackgroundMusic.pause();
+                    setVolumeControlStream(AudioManager.STREAM_MUSIC);
                     Soundpool.play(soundStartGame, 1, 1, 0, 0, 1);
-                    ReadData(QuesList);
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     BackgroundMusic.start();
+                    ReadData(QuesList);
                     Gameplay_layout1();
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(activity_gameplay.this, "Error _ Retrieving Data", Toast.LENGTH_SHORT).show());
-        if (Objects.equals(style, "suddendeath"))
-        {
-            num = 1000;
-        }
+
     }
     @Override
     public boolean onLongClick(View v) {
@@ -129,8 +143,8 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         int idCheck = v.getId();
-        if (idCheck == R.id.ButtonStopMusic){
-            if (BackgroundMusic.isPlaying()){
+        if (idCheck == R.id.ButtonStopMusic) {
+            if (BackgroundMusic.isPlaying()) {
                 BackgroundMusic.pause();
             }
             else {
@@ -148,11 +162,11 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
                 temp1 = RandomAnswerID(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, AnswerIDtoButtonID(QuesList.get(id).Answer));
                 temp2 = RandomAnswerID(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, AnswerIDtoButtonID(QuesList.get(id).Answer));
             }
-            DisableAnswerButton(new int[]{temp1, temp2});
+            DisableAnswerButton(new int[]{temp1, temp2}, -1);
         }
         else if (idCheck == R.id.ButtonHelp3) {
             Help3 = false;
-            DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD});
+            DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, -1);
         }
         else if (idCheck == R.id.ButtonNext) {
             pos++;
@@ -194,7 +208,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
     private boolean CheckAnswer(int idCheck) {
         if (CountdownTimer != null)
             CountdownTimer.cancel();
-        DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD});
+        DisableAnswerButton(new int[]{R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD}, idCheck);
         DisableHelpButton();
         boolean correct = false;
         if (idCheck == R.id.ButtonAnsA) {
@@ -210,6 +224,7 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
             if (QuesList.get(id).Answer.compareTo("3") == 0)
                 correct = true;
         }
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         if (correct) {
             Soundpool.play(soundRightAns, 1, 1, 0, 0, (float)1.5);
         }
@@ -477,17 +492,30 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         else
             return R.id.ButtonAnsD;
     }
-    private void DisableAnswerButton(int[] arr) {
+    @SuppressLint("DiscouragedApi")
+    private void DisableAnswerButton(int[] arr, int idCheck) {
         for (int j : arr) {
             if (j == AnswerIDtoButtonID(QuesList.get(id).Answer))
                 continue;
             if (pos % 2 == 0) {
-                ((ImageButton) findViewById(j)).setImageBitmap(null);
-                ((ImageButton) findViewById(j)).setEnabled(false);
+                if (j == idCheck) {
+                    ((ImageButton) findViewById(j)).buildDrawingCache();
+                    ((ImageButton) findViewById(j)).setImageBitmap(BlurBitmap(findViewById(j).getDrawingCache()));
+                    ((ImageButton) findViewById(j)).setEnabled(false);
+                }
+                else {
+                    ((ImageButton) findViewById(j)).setImageBitmap(null);
+                    ((ImageButton) findViewById(j)).setEnabled(false);
+                }
             }
             else {
-                ((Button) findViewById(j)).setText("");
-                ((Button) findViewById(j)).setEnabled(false);
+                if (j == idCheck) {
+                    ((Button) findViewById(j)).setBackgroundResource(Integer.parseInt("#CC0000"));
+                    ((Button) findViewById(j)).setEnabled(false);
+                }
+                else {
+                    ((Button) findViewById(j)).setEnabled(false);
+                }
             }
         }
     }
@@ -495,5 +523,30 @@ public class activity_gameplay extends Activity implements View.OnClickListener,
         for (int i : new int[]{R.id.ButtonHelp1, R.id.ButtonHelp2, R.id.ButtonHelp3}) {
             ((Button) findViewById(i)).setEnabled(false);
         }
+    }
+    private Bitmap BlurBitmap(Bitmap image) {
+        if (null == image)
+            return null;
+        Bitmap outputBitmap = Bitmap.createBitmap(image);
+        final RenderScript renderScript = RenderScript.create(this);
+        Allocation tmpIn = Allocation.createFromBitmap(renderScript, image);
+        Allocation tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+        theIntrinsic.setRadius(25f);
+        theIntrinsic.setInput(tmpIn);
+        theIntrinsic.forEach(tmpOut);
+        tmpOut.copyTo(outputBitmap);
+        return outputBitmap;
+    }
+    private Bitmap DarkenBitMap(Bitmap image) {
+        if (null == image)
+            return null;
+        Bitmap outputBitmap = Bitmap.createBitmap(image);
+        Canvas canvas = new Canvas(outputBitmap);
+        Paint p = new Paint(Color.RED);
+        ColorFilter filter = new LightingColorFilter(0xFF7F7F7F, 0x00000000);
+        p.setColorFilter(filter);
+        canvas.drawBitmap(outputBitmap, new Matrix(), p);
+        return outputBitmap;
     }
 }
