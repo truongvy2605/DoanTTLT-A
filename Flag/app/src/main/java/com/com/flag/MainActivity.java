@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //BackgroundMusic = MediaPlayer.create(this, R.raw.backgroundmusic);
+        BackgroundMusic = MediaPlayer.create(this, R.raw.backgroundmusic);
         Name = findViewById(R.id.EditMainName);
         /* CHỨC NĂNG PLAY GAME */
         PlayGame = findViewById(R.id.ButtonMainPlay);
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("PlayerName", PlayerName);
                 intent.putExtra("MyPackage", bundle);
-                //BackgroundMusic.start();
+                BackgroundMusic.start();
                 startActivity(intent);
             }
         });
