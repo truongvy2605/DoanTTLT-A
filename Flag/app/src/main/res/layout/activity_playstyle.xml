@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_diff"
-    android:background="#009999">
+    tools:context=".activity.activityPlayStyle"
+    android:background="#1EB4F0">
 
     <ImageView
-        android:id="@+id/ImageDiffTheme"
+        android:id="@+id/ImageStyleTheme"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"
@@ -17,13 +17,13 @@
         />
 
     <Button
-        android:id="@+id/ButtonDiffEasy"
+        android:id="@+id/ButtonStyleQuiz"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
-        android:text="EASY"
+        android:backgroundTint="#4682B4"
+        android:text="QUIZ GAME"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
         android:layout_marginTop="250dp"
@@ -31,30 +31,30 @@
         />
 
     <Button
-        android:id="@+id/ButtonDiffHard"
+        android:id="@+id/ButtonStyleSurv"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
-        android:text="HARD"
+        android:backgroundTint="#4682B4"
+        android:text="SURVIVAL"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
-        android:layout_below="@+id/ButtonDiffEasy"
+        android:layout_below="@+id/ButtonStyleQuiz"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"/>
 
     <Button
-        android:id="@+id/ButtonDiffExpert"
+        android:id="@+id/ButtonStyleFCard"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
-        android:text="EXPERT"
+        android:backgroundTint="#4682B4"
+        android:text="FLASH CARD"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
-        android:layout_below="@+id/ButtonDiffHard"
+        android:layout_below="@+id/ButtonStyleSurv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         />

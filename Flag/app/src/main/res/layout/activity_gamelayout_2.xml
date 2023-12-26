@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#009999"
-    tools:context=".activity_gameplay">
+    android:background="#1EB4F0"
+    tools:context=".activity.activityGamePlay">
 
     <TextView
         android:id="@+id/TextQuesID"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="#CCFFFF"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
         android:text=""
         android:gravity="center"
         android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="38dp"
+        android:textColor="@color/white"
+        android:textSize="28dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
@@ -26,17 +26,26 @@
     <Button
         android:id="@+id/Layout2_TextQuestion"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:backgroundTint="#CCFFFF"
+        android:layout_height="70dp"
+        android:backgroundTint="#4682B4"
         android:text=""
         android:contentDescription="Question"
         android:gravity="center"
         android:textAllCaps="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="38dp"
         android:textStyle="bold"
         android:layout_below="@+id/TextQuesID"
         android:layout_marginTop="90dp"
+        />
+
+    <ImageView
+        android:id="@+id/ImageEntryTheme"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/transparentwm"
+        android:layout_marginTop="350dp"
         />
 
     <ImageButton
@@ -45,15 +54,12 @@
         android:layout_height="120dp"
         android:adjustViewBounds="true"
         android:contentDescription="AnswerA"
-        android:backgroundTint="#99CCCC"
+        android:backgroundTint="#4682B4"
         android:scaleType="fitXY"
         android:layout_below="@+id/Layout2_TextQuestion"
         android:layout_marginTop="60dp"
         android:layout_marginStart="5dp"
         />
-
-
-
 
     <ImageButton
         android:id="@+id/ButtonAnsB"
@@ -61,7 +67,7 @@
         android:layout_height="120dp"
         android:adjustViewBounds="true"
         android:contentDescription="AnswerB"
-        android:backgroundTint="#99CCCC"
+        android:backgroundTint="#4682B4"
         android:scaleType="fitXY"
         android:layout_below="@+id/ButtonAnsA"
         android:layout_marginTop="20dp"
@@ -74,7 +80,7 @@
         android:layout_height="120dp"
         android:adjustViewBounds="true"
         android:contentDescription="AnswerC"
-        android:backgroundTint="#99CCCC"
+        android:backgroundTint="#4682B4"
         android:scaleType="fitXY"
         tools:layout_editor_absoluteX="05dp"
         tools:layout_editor_absoluteY="475dp"
@@ -91,7 +97,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="AnswerD"
         android:scaleType="fitXY"
-        android:backgroundTint="#99CCCC"
+        android:backgroundTint="#4682B4"
         tools:layout_editor_absoluteX="210dp"
         tools:layout_editor_absoluteY="475dp"
         android:layout_below="@+id/ButtonAnsC"
@@ -119,36 +125,7 @@
         android:contentDescription="StopMusic"
         android:layout_marginStart="360dp"
         android:background="@drawable/baseline_pause_circle_24"
-        />
-
-    <Button
-        android:id="@+id/ButtonHelp1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/ButtonAnsD"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="100dp"
-        android:text="1"
-        />
-
-    <Button
-        android:id="@+id/ButtonHelp2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/ButtonAnsD"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="100dp"
-        android:text="2"
-        />
-
-    <Button
-        android:id="@+id/ButtonHelp3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/ButtonAnsD"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="100dp"
-        android:text="3"
+        android:backgroundTint="@color/white"
         />
 
     <ProgressBar
@@ -157,23 +134,63 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:max="30"
-        android:progress="30"
+        android:progress="15"
         android:layout_marginTop="15dp"
         android:layout_marginStart="80dp"
+        android:progressTint="#FFD700"
+        android:backgroundTint="#4682B4"
+        />
+
+    <Button
+        android:id="@+id/ButtonHelp1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ButtonAnsD"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="110dp"
+        android:contentDescription="Help1"
+        android:background="@drawable/baseline_refresh_24"
+        android:backgroundTint="#4682B4"
+        />
+
+    <Button
+        android:id="@+id/ButtonHelp2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ButtonAnsD"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="110dp"
+        android:contentDescription="Help2"
+        android:background="@drawable/baseline_percent_24"
+        android:backgroundTint="#4682B4"
+        />
+
+    <Button
+        android:id="@+id/ButtonHelp3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ButtonAnsD"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="110dp"
+        android:contentDescription="Help3"
+        android:background="@drawable/baseline_check_circle_24"
+        android:backgroundTint="#4682B4"
         />
 
     <Button
         android:id="@+id/ButtonNext"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:text="NEXT"
-        android:textStyle="bold"
-        android:textSize = "18dp"
-        android:textColor="@color/white"
-        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/ButtonAnsD"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="360dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/baseline_east_24"
+        android:backgroundTint="#4682B4"
+        android:contentDescription="Next"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
         />
 
 </RelativeLayout>

@@ -22,11 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_entry"/>
-        <activity android:name=".activity_diff"/>
-        <activity android:name=".activity_highscore"/>
-        <activity android:name=".activity_result"/>
-        <activity android:name=".activity_gameplay"/>
+        <activity android:name=".activity.activityEntryPoint"/>
+        <activity android:name=".activity.activityDifficulty"/>
+        <activity android:name=".activity.activityPlayStyle"/>
+        <activity android:name=".activity.activityFlashCard"/>
+        <activity android:name=".activity.activityHighScore"/>
+        <activity android:name=".activity.activityResult"/>
+        <activity android:name=".activity.activityGamePlay"/>
     </application>
 
 </manifest>
