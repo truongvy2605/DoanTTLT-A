@@ -1,5 +1,7 @@
 package com.com.flag.activity;
 
+import static com.com.flag.MainActivity.soundBackground;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".activity.activityPlayStyle"
     android:background="#1EB4F0">
 
@@ -13,7 +13,7 @@
         android:layout_height="300dp"
         android:scaleType="fitXY"
         android:src="@drawable/transparentwm"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="0dp"
         />
 
     <Button
@@ -26,7 +26,7 @@
         android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         />
 

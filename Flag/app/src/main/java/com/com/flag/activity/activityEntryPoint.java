@@ -1,5 +1,7 @@
 package com.com.flag.activity;
 
+import static com.com.flag.MainActivity.soundBackground;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +11,7 @@ import android.widget.Button;
 import com.com.flag.R;
 
 public class activityEntryPoint extends Activity {
-    Button PlayGame, HighScore, Exit;
+    Button PlayGame, HighScore, Exit, MuteSound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,13 @@ public class activityEntryPoint extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        MuteSound = findViewById(R.id.ButtonStopMusic);
+        MuteSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                soundBackground.Mute();
             }
         });
     }

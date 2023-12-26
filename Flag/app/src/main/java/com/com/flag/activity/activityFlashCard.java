@@ -1,6 +1,6 @@
 package com.com.flag.activity;
 
-import static com.com.flag.MainActivity.BackgroundMusic;
+import static com.com.flag.MainActivity.soundBackground;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -69,12 +69,7 @@ public class activityFlashCard extends Activity implements View.OnClickListener,
     public void onClick(View v) {
         int idCheck = v.getId();
         if (idCheck == R.id.ButtonStopMusic) {
-            if (BackgroundMusic.isPlaying()) {
-                BackgroundMusic.pause();
-            }
-            else {
-                BackgroundMusic.start();
-            }
+            soundBackground.Mute();
         }
         else if (idCheck == R.id.ButtonNext) {
             id++;
