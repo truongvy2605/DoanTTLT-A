@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009999"
-    tools:context=".activity_highscore">
+    tools:context=".activity.activityHighScore">
 
     <RelativeLayout
         android:layout_width="match_parent"

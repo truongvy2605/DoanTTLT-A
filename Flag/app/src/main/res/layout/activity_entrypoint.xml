@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_entry"
-    android:background="#009999">
+    tools:context=".activity.activityEntryPoint"
+    android:background="#1EB4F0">
 
     <ImageView
         android:id="@+id/ImageEntryTheme"
@@ -20,10 +20,10 @@
         android:id="@+id/ButtonEntryPG"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
+        android:backgroundTint="#4682B4"
         android:text="PLAY GAME"
         android:gravity = "center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
         android:layout_marginTop="250dp"
@@ -34,10 +34,10 @@
         android:id="@+id/ButtonEntryHS"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
+        android:backgroundTint="#4682B4"
         android:text="HIGH SCORE"
         android:gravity = "center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
         android:layout_below="@+id/ButtonEntryPG"
@@ -46,13 +46,13 @@
         />
 
     <Button
-        android:id="@+id/ButtonEntryExit"
+        android:id="@+id/ButtonEntryIns"
         android:layout_width="250dp"
         android:layout_height="75dp"
-        android:backgroundTint="#CCFFFF"
-        android:text="FLASH CARDS"
+        android:backgroundTint="#4682B4"
+        android:text="INSTRUCTION"
         android:gravity = "center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
         android:layout_below="@+id/ButtonEntryHS"
