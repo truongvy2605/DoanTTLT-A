@@ -2,7 +2,7 @@ package com.com.flag.activity;
 import com.com.flag.R;
 import com.com.flag.entity.*;
 
-import static com.com.flag.MainActivity.BackgroundMusic;
+import static com.com.flag.MainActivity.soundBackground;
 import static com.com.flag.MainActivity.PlayerName;
 
 import android.annotation.SuppressLint;
@@ -35,12 +35,6 @@ import java.util.Objects;
 
 
 public class activityGamePlay extends Activity implements View.OnClickListener, View.OnLongClickListener {
-    //private boolean Help1 = true, Help2 = true, Help3 = true;
-    //private final ArrayList<QuestionNare> QuesList = new ArrayList<>();
-    //private final ArrayList<String> Countries = new ArrayList<>();
-    //private SoundPool Soundpool;
-    //int soundStartGame, soundGoodEG, soundBadEG, soundRightAns, soundWrongAns;
-    //private TextToSpeech AnswerTTS;
     private boolean AnswerCheck = false;
     private final int[] ButtonArr = {R.id.ButtonAnsA, R.id.ButtonAnsB, R.id.ButtonAnsC, R.id.ButtonAnsD,
             R.id.ButtonStopMusic, R.id.ButtonHelp1, R.id.ButtonHelp2, R.id.ButtonHelp3, R.id.ButtonNext};
@@ -59,23 +53,6 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
         soundEffect.GenerateSound(this);
         textSpeech.GenerateTextSpeech(this);
-        /*AudioAttributes attributes = new AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setFlags(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .build();
-        Soundpool = new SoundPool.Builder()
-                .setAudioAttributes(attributes)
-                .setMaxStreams(1).build();
-        soundStartGame = Soundpool.load(this, R.raw.startgame, 1);
-        soundGoodEG = Soundpool.load(this, R.raw.goodendgame, 1);
-        soundBadEG = Soundpool.load(this, R.raw.badendgame, 1);
-        soundWrongAns = Soundpool.load(this, R.raw.wrongans, 1);
-        soundRightAns = Soundpool.load(this, R.raw.rightans, 1);
-        AnswerTTS = new TextToSpeech(this, status -> {
-            if (status == TextToSpeech.SUCCESS)
-                AnswerTTS.setLanguage(Locale.ENGLISH);
-        });*/
         Intent intent = getIntent();
         if (intent != null)
         {
@@ -93,29 +70,35 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
         else
             path = "Data_Easy";
             //questionList.GenerateQuestion(questionList.CountriesEasy);*/
-        if (Objects.equals(path, "Data_Survival"))
+        /*if (Objects.equals(path, "Data_Survival"))
         {
             num = survival;
             //questionList.GenerateQuestion(questionList.CountriesSurvival);
-        }
+        }*/
         StorageReference listRef = FirebaseStorage.getInstance().getReference().child(path);
         listRef.listAll()
                 .addOnSuccessListener(listResult -> {
                     for (StorageReference item : listResult.getItems()) {
                         questionList.Countries.add((item.getName().split("\\."))[0]);
                     }
-                    //if (BackgroundMusic != null)
-                    //    BackgroundMusic.pause();
-                    setVolumeControlStream(AudioManager.STREAM_MUSIC);
-                    soundEffect.Effect.play(soundEffect.soundStartGame, 1, 1, 1, 0, 1);
+                    soundBackground.Pause();
+                    if (soundBackground.systemSound) {
+                        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+                        soundEffect.Effect.play(soundEffect.soundStartGame, 1, 1, 1, 0, 1);
+                    }
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    //BackgroundMusic.start();
-                    //ReadData(questionList.List);
-                    questionList.GenerateQuestion();
+                    soundBackground.Play();
+                    if (Objects.equals(path, "Data_Survival")) {
+                        num = survival;
+                        questionList.GenerateQuestion(num);
+                    }
+                    else {
+                        questionList.GenerateQuestion(-1);
+                    }
                     GameplayLayout1();
                 })
                 .addOnFailureListener(e ->
@@ -151,16 +134,9 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
     public void onClick(View v) {
         int idCheck = v.getId();
         if (idCheck == R.id.ButtonStopMusic) {
-            if (BackgroundMusic.isPlaying()) {
-                BackgroundMusic.pause();
-            }
-            else {
-                BackgroundMusic.start();
-            }
+            soundBackground.Mute();
         }
         else if (idCheck == R.id.ButtonHelp1) {
-            if (CountdownTimer != null)
-                CountdownTimer.cancel();
             support.getHelp1();
             NextGameplay(position);
         }
@@ -172,8 +148,6 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
         }
         else if (idCheck == R.id.ButtonNext) {
             position++;
-            if (CountdownTimer != null)
-                CountdownTimer.cancel();
             questionList.List.remove(id);
             NextGameplay(position);
         }
@@ -187,10 +161,13 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
                 }
             }
             if (position >= num) {
-                if (Progress >= 10)
-                    soundEffect.Effect.play(soundEffect.soundGoodEG, 1, 1, 0, 0, 1);
-                else
-                    soundEffect.Effect.play(soundEffect.soundBadEG, 1, 1, 0, 0, 1);
+                if (soundBackground.systemSound) {
+                    setVolumeControlStream(AudioManager.STREAM_MUSIC);
+                    if (Progress >= quiz)
+                        soundEffect.Effect.play(soundEffect.soundGoodEG, 1, 1, 0, 0, 1);
+                    else
+                        soundEffect.Effect.play(soundEffect.soundBadEG, 1, 1, 0, 0, 1);
+                }
                 Intent intent = new Intent(activityGamePlay.this, activityResult.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Progress", Progress);
@@ -203,7 +180,6 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
                 }
                 finish();
             }
-
         }
     }
 
@@ -226,17 +202,20 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
             if (questionList.List.get(id).Answer.compareTo("3") == 0)
                 correct = true;
         }
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        if (correct) {
-            soundEffect.Effect.play(soundEffect.soundRightAns, 1, 1, 0, 0, (float)1.5);
-        }
-        else {
-            soundEffect.Effect.play(soundEffect.soundWrongAns, 1, 1, 0, 0, (float)1.5);
+
+        if (soundBackground.systemSound) {
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            if (correct)
+                soundEffect.Effect.play(soundEffect.soundRightAns, 1, 1, 0, 0, (float)1.5);
+            else
+                soundEffect.Effect.play(soundEffect.soundWrongAns, 1, 1, 0, 0, (float)1.5);
         }
         return correct;
     }
     private void NextGameplay(int pos)
     {
+        if (CountdownTimer != null)
+            CountdownTimer.cancel();
         AnswerCheck = false;
         if (pos % 2 == 0)
             GameplayLayout2();
@@ -343,7 +322,7 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
                     ((ImageButton) findViewById(j)).setImageBitmap(Utility.BlurBitmap(findViewById(j).getDrawingCache(), this));
                     ((ImageButton) findViewById(j)).setEnabled(false);
                 }
-                else if (j == Utility.AnswerIDtoButtonID(questionList.List.get(id).Answer)) {
+                else if (j == Utility.AnswerIDtoButtonID(questionList.List.get(id).Answer) && AnswerCheck) {
                     ((ImageButton) findViewById(j)).setEnabled(false);
                 }
                 else {
@@ -358,7 +337,7 @@ public class activityGamePlay extends Activity implements View.OnClickListener, 
                     ((Button) findViewById(j)).setTextColor(Color.parseColor("#800000"));
                     ((Button) findViewById(j)).setEnabled(false);
                 }
-                else if (j == Utility.AnswerIDtoButtonID(questionList.List.get(id).Answer)) {
+                else if (j == Utility.AnswerIDtoButtonID(questionList.List.get(id).Answer) && AnswerCheck) {
                     ((Button) findViewById(j)).setEnabled(false);
                 }
                 else {

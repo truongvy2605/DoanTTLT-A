@@ -1,5 +1,7 @@
 package com.com.flag.activity;
 
+import static com.com.flag.MainActivity.soundBackground;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,34 +16,41 @@ import com.com.flag.MainActivity;
 import com.com.flag.R;
 
 public class activityResult extends Activity {
-    Button TryAgain, TapOut;
+    Button TryAgain, TapOut, MuteSound;
     TextView Score;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        TryAgain = (Button)findViewById(R.id.ButtonResultTA);
-        TapOut = (Button)findViewById(R.id.ButtonResultTO);
+
         Score = (TextView) findViewById(R.id.TextResultScore);
         Intent callerIntent=getIntent();
         Bundle packageFromCaller= callerIntent.getBundleExtra("MyPackage");
         assert packageFromCaller != null;
         Score.setText("" + packageFromCaller.getInt("Progress"));
+
+        TryAgain = (Button)findViewById(R.id.ButtonResultTA);
         TryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent
-                        (activityResult.this,  activityDifficulty.class);
+                Intent intent = new Intent(activityResult.this,  activityPlayStyle.class);
                 startActivity(intent);
             }
         });
+        TapOut = (Button)findViewById(R.id.ButtonResultTO);
         TapOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent
-                        (activityResult.this,  MainActivity.class);
+                Intent intent = new Intent(activityResult.this,  MainActivity.class);
                 startActivity(intent);
+            }
+        });
+        MuteSound = findViewById(R.id.ButtonStopMusic);
+        MuteSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                soundBackground.Mute();
             }
         });
     }
